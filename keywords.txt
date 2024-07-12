@@ -1,0 +1,45 @@
+  
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+UnifiedLedType      KEYWORD1
+UnifiedLedMode      KEYWORD1
+functionReturnValue KEYWORD1
+UnifiedLED          KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin		KEYWORD2
+setLevel	KEYWORD2
+setMode     KEYWORD2
+setLedNum	KEYWORD2
+getType		KEYWORD2
+setLed		KEYWORD2
+setOnce		KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+LED_BAR	LITERAL1
+LED_CIRCULAR	LITERAL1
+P98X3_LED	LITERAL1
+NEO_PIXEL_LED	LITERAL1
+SIMPLE_COLOR_LED	LITERAL1
+SIMPLE_MONO_LED	LITERAL1
+LED_FORWARD	LITERAL1
+LED_REVERSE	LITERAL1
+PULL_UP	LITERAL1
+PULL_DOWN	LITERAL1
+FUNCTION_UNSUPPORTED	LITERAL1
+FUNCTION_SUCCESS	LITERAL1
+FUNCTION_FAIL	LITERAL1
+LED_HAL_USE_P98X3 LITERAL1
+LED_HAL_USE_MY9221  LITERAL1
+LED_HAL_USE_NEO_PIXEL   LITERAL1
+

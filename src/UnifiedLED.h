@@ -1,0 +1,82 @@
+#ifndef __UNIFIED_LED_H__
+#define LED_HAL_USE_P98X3 // Grove CHAINABLE LED etc.
+#define LED_HAL_USE_MY9221
+#define LED_HAL_USE_NEO_PIXEL
+#include <UnifiedLED_config.h>
+
+#ifdef LED_HAL_USE_MY9221
+#include <Grove_LED_Bar.h>
+#endif /* LED_HAL_USE_MY9221 */
+
+#ifdef LED_HAL_USE_NEO_PIXEL
+#include <Adafruit_NeoPixel.h>
+#endif /* LED_HAL_USE_NEO_PIXEL */
+
+#ifdef LED_HAL_USE_P98X3
+#include <ChainableLED.h>
+#endif /* LED_HAL_USE_P98X3 */
+
+
+enum UnifiedLedType {
+  LED_BAR =1,
+  LED_CIRCULAR,
+  P98X3_LED,
+  NEO_PIXEL_LED,
+  SIMPLE_COLOR_LED,
+  SIMPLE_MONO_LED
+};
+
+enum UnifiedLedMode {
+  LED_FORWARD = 1,
+  LED_REVERSE,
+  PULL_UP,
+  PULL_DOWN
+};
+
+enum functionReturnValue {
+  FUNCTION_UNSUPPORTED = 1,
+  FUNCTION_SUCCESS,
+  FUNCTION_FAIL,
+};
+
+class UnifiedLED {
+public:
+#ifdef LED_HAL_USE_MY9221
+  UnifiedLED(Grove_LED_Bar* bar, UnifiedLedType type, uint32_t leds, UnifiedLedMode mode);
+#endif /* LED_HAL_USE_MY9221 */
+#ifdef LED_HAL_USE_P98X3
+  UnifiedLED(ChainableLED* chain, UnifiedLedType type, uint32_t leds);
+#endif /* LED_HAL_USE_P98X3 */
+#ifdef LED_HAL_USE_NEO_PIXEL
+  UnifiedLED(Adafruit_NeoPixel* pixel, UnifiedLedType type, uint32_t leds);
+#endif /* LED_HAL_USE_NEO_PIXEL */
+  UnifiedLED(uint8_t pin, UnifiedLedMode mode);
+  UnifiedLED(uint8_t r_pin, uint8_t g_pin, uint8_t b_pin, UnifiedLedMode mode);
+  functionReturnValue begin();
+  functionReturnValue setLevel(float level);
+  functionReturnValue setMode(UnifiedLedMode mode);
+  functionReturnValue setLedNum(uint32_t count);
+  UnifiedLedType getType(void);
+  functionReturnValue setLed(uint32_t ledNo, float brightness);
+  functionReturnValue setLed(float brightness);
+  functionReturnValue setLed(uint32_t ledNo, byte red, byte green, byte blue);
+  functionReturnValue setLed(byte red, byte green, byte blue);
+  functionReturnValue setOnce(uint32_t value);
+  functionReturnValue setOnce(uint32_t value, byte red, byte green, byte blue);
+protected:
+  uint8_t _pin1, _pin2, _pin3;
+  UnifiedLedType _type;
+  uint32_t _num_of_led;
+  UnifiedLedMode _led_mode;
+#ifdef LED_HAL_USE_MY9221
+  Grove_LED_Bar *my9221;
+#endif /* LED_HAL_USE_MY9221 */
+#ifdef LED_HAL_USE_P98X3
+  ChainableLED *p98x3;
+#endif /* LED_HAL_USE_P98X3 */
+#ifdef LED_HAL_USE_NEO_PIXEL
+  Adafruit_NeoPixel* neoPixel;
+#endif /* LED_HAL_USE_NEO_PIXEL */
+};
+
+#endif /* __UNIFIED_LED_H__ */

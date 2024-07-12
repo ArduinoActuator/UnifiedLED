@@ -1,0 +1,3 @@
+//#undef LED_HAL_USE_P98X3 // Grove CHAINABLE LED etc.
+//#undef LED_HAL_USE_MY9221
+//#undef LED_HAL_USE_NEO_PIXEL
