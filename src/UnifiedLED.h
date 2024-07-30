@@ -33,7 +33,7 @@ enum UnifiedLedMode {
   PULL_DOWN
 };
 
-enum functionReturnValue {
+enum ledFunctionReturnValue {
   FUNCTION_UNSUPPORTED = 1,
   FUNCTION_SUCCESS,
   FUNCTION_FAIL,
@@ -52,17 +52,17 @@ public:
 #endif /* LED_HAL_USE_NEO_PIXEL */
   UnifiedLED(uint8_t pin, UnifiedLedMode mode);
   UnifiedLED(uint8_t r_pin, uint8_t g_pin, uint8_t b_pin, UnifiedLedMode mode);
-  functionReturnValue begin();
-  functionReturnValue setLevel(float level);
-  functionReturnValue setMode(UnifiedLedMode mode);
-  functionReturnValue setLedNum(uint32_t count);
+  ledFunctionReturnValue begin();
+  ledFunctionReturnValue setLevel(float level);
+  ledFunctionReturnValue setMode(UnifiedLedMode mode);
+  ledFunctionReturnValue setLedNum(uint32_t count);
   UnifiedLedType getType(void);
-  functionReturnValue setLed(uint32_t ledNo, float brightness);
-  functionReturnValue setLed(float brightness);
-  functionReturnValue setLed(uint32_t ledNo, byte red, byte green, byte blue);
-  functionReturnValue setLed(byte red, byte green, byte blue);
-  functionReturnValue setOnce(uint32_t value);
-  functionReturnValue setOnce(uint32_t value, byte red, byte green, byte blue);
+  ledFunctionReturnValue setLed(uint32_t ledNo, float brightness);
+  ledFunctionReturnValue setLed(float brightness);
+  ledFunctionReturnValue setLed(uint32_t ledNo, byte red, byte green, byte blue);
+  ledFunctionReturnValue setLed(byte red, byte green, byte blue);
+  ledFunctionReturnValue setOnce(uint32_t value);
+  ledFunctionReturnValue setOnce(uint32_t value, byte red, byte green, byte blue);
 protected:
   uint8_t _pin1, _pin2, _pin3;
   UnifiedLedType _type;

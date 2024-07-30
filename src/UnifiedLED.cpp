@@ -40,7 +40,7 @@ UnifiedLED::UnifiedLED(uint8_t r_pin, uint8_t g_pin, uint8_t b_pin, UnifiedLedMo
   _led_mode(mode)
 {}
 
-functionReturnValue UnifiedLED::setLevel(float level) {
+ledFunctionReturnValue UnifiedLED::setLevel(float level) {
   switch(_type){
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
@@ -56,7 +56,7 @@ functionReturnValue UnifiedLED::setLevel(float level) {
   return FUNCTION_UNSUPPORTED;
 }
 
-functionReturnValue UnifiedLED::setLedNum(uint32_t count) {
+ledFunctionReturnValue UnifiedLED::setLedNum(uint32_t count) {
   switch(_type){
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
@@ -81,7 +81,7 @@ functionReturnValue UnifiedLED::setLedNum(uint32_t count) {
   return FUNCTION_UNSUPPORTED;
 }
 
-functionReturnValue UnifiedLED::setMode(UnifiedLedMode mode) {
+ledFunctionReturnValue UnifiedLED::setMode(UnifiedLedMode mode) {
   switch(_type){
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
@@ -107,7 +107,7 @@ UnifiedLedType UnifiedLED::getType(void) {
   return _type;
 }
 
-functionReturnValue UnifiedLED::setLed(uint32_t ledNo, float brightness) {
+ledFunctionReturnValue UnifiedLED::setLed(uint32_t ledNo, float brightness) {
   switch(_type){
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
@@ -130,7 +130,7 @@ functionReturnValue UnifiedLED::setLed(uint32_t ledNo, float brightness) {
   return FUNCTION_UNSUPPORTED;
 }
 
-functionReturnValue UnifiedLED::setLed(float brightness) {
+ledFunctionReturnValue UnifiedLED::setLed(float brightness) {
   switch(_type){
     case SIMPLE_MONO_LED:
       uint8_t ledValue;
@@ -145,7 +145,7 @@ functionReturnValue UnifiedLED::setLed(float brightness) {
   return FUNCTION_UNSUPPORTED;
 }
 
-functionReturnValue UnifiedLED::setLed(uint32_t ledNo, byte red, byte green, byte blue) {
+ledFunctionReturnValue UnifiedLED::setLed(uint32_t ledNo, byte red, byte green, byte blue) {
   switch(_type){
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
@@ -186,7 +186,7 @@ functionReturnValue UnifiedLED::setLed(uint32_t ledNo, byte red, byte green, byt
   return FUNCTION_UNSUPPORTED;
 }
 
-functionReturnValue UnifiedLED::setLed(byte red, byte green, byte blue) {
+ledFunctionReturnValue UnifiedLED::setLed(byte red, byte green, byte blue) {
   switch(_type){
     case SIMPLE_COLOR_LED:
       uint8_t r_level, g_level, b_level;
@@ -207,7 +207,7 @@ functionReturnValue UnifiedLED::setLed(byte red, byte green, byte blue) {
   return FUNCTION_UNSUPPORTED;
 }
 
-functionReturnValue UnifiedLED::setOnce(uint32_t value) {
+ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value) {
   switch(_type){
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
@@ -231,7 +231,7 @@ functionReturnValue UnifiedLED::setOnce(uint32_t value) {
   return FUNCTION_UNSUPPORTED;
 }
 
-functionReturnValue UnifiedLED::setOnce(uint32_t value, byte red, byte green, byte blue) {
+ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value, byte red, byte green, byte blue) {
   switch(_type){
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
@@ -289,7 +289,7 @@ functionReturnValue UnifiedLED::setOnce(uint32_t value, byte red, byte green, by
   return FUNCTION_UNSUPPORTED;
 }
 
-functionReturnValue UnifiedLED::begin() {
+ledFunctionReturnValue UnifiedLED::begin() {
   switch(_type) {
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
