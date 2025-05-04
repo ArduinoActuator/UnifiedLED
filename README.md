@@ -24,23 +24,46 @@
 - [チェーン接続可能 Grove RGB LED][GroveChainableRGB_Led]
 - [Grove RGB LED スティック][Grove_RGB_LEDスティック]
 
+## 使い方
+このライブラリは，マイコン制御のLEDに関するデバイスドライバをライブラリとして取り込むため，
+不要なデバイスに関するデバイスドライバが取り込まれないように，不要なデバイスに関する定義を
+無効化する．
+
+```UnifiedLED_config.h```の```#undef```を有効化することで該当するデバイスドライバの
+取り込みが防止できる．
+
+
+```C:UnifiedLED_config.h
+//#undef LED_HAL_USE_P98X3 // Grove CHAINABLE LED etc.
+//#undef LED_HAL_USE_MY9221　// MY9221で制御されるLED
+//#undef LED_HAL_USE_NEO_PIXEL // Adaruit Neo Pixelライブラリ
+```
 
 <!-- 以下は，外部リンクの定義 
 - Adafruit Unified Sensor Driver - [https://github.com/adafruit/Adafruit_Sensor][AdafruitUSD]
 -->
 
-<!-- 以下は，外部リンクの定義 -->
-[GroveRedLED]:https://jp.seeedstudio.com/Grove-Red-LED.html <!-- Grove LED 赤 Arduino用 -->
-[Grove_RGB_LEDスティック]:https://jp.seeedstudio.com/Grove-RGB-LED-Stick-10-WS2813-Mini.html <!-- Grove RGB LED スティック -->
-[GroveChainableRGB_Led]:https://jp.seeedstudio.com/Grove-Chainable-RGB-Led-V2-0.html <!-- チェーン接続可能 Grove RGB LED -->
-[GroveLEDBar]:https://wiki.seeedstudio.com/Grove-LED_Bar/ <!-- Grove - LED Bar -->
-[GroveCircularLED]:https://wiki.seeedstudio.com/Grove-Circular_LED/ <!-- Grove - Circular LED -->
-[PL9823F5]:https://akizukidenshi.com/catalog/g/g108411/ <!-- マイコン内蔵RGBLED 5mm PL9823-F5 -->
-[OSTA5131A]:https://akizukidenshi.com/catalog/g/g102476/ <!-- RGBフルカラーLED 5mm OSTA5131A カソードコモン -->
+<!-- Grove LED 赤 Arduino用 -->
+[GroveRedLED]: https://jp.seeedstudio.com/Grove-Red-LED.html
+<!-- Grove RGB LED スティック -->
+[Grove_RGB_LEDスティック]: https://jp.seeedstudio.com/Grove-RGB-LED-Stick-10-WS2813-Mini.html
+<!-- チェーン接続可能 Grove RGB LED -->
+[GroveChainableRGB_Led]: https://jp.seeedstudio.com/Grove-Chainable-RGB-Led-V2-0.html
+<!-- Grove - LED Bar -->
+[GroveLEDBar]: https://wiki.seeedstudio.com/Grove-LED_Bar/
+<!-- Grove - Circular LED -->
+[GroveCircularLED]: https://wiki.seeedstudio.com/Grove-Circular_LED/
+<!-- マイコン内蔵RGBLED 5mm PL9823-F5 -->
+[PL9823F5]: https://akizukidenshi.com/catalog/g/g108411/
+<!-- RGBフルカラーLED 5mm OSTA5131A カソードコモン -->
+[OSTA5131A]: https://akizukidenshi.com/catalog/g/g102476/
+<!-- Grove LED Bar -->
+[Grove_LED_Bar]: https://github.com/Seeed-Studio/Grove_LED_Bar
+<!-- Grove RGB LED chainable -->
+[ChainableLED]: https://github.com/pjpmarques/ChainableLED
+<!-- Adafruit NeoPixel Library -->
+[AdafruitNeoPixelLibrary]: https://github.com/adafruit/Adafruit_NeoPixel
 
-[Grove_LED_Bar]:https://github.com/Seeed-Studio/Grove_LED_Bar <!--  -->
-[ChainableLED]:https://github.com/pjpmarques/ChainableLED <!--  -->
-[AdafruitNeoPixelLibrary]:https://github.com/adafruit/Adafruit_NeoPixel <!-- Adafruit NeoPixel Library -->
 
 <!-- 以下は，外部リンクの定義 -->
 [GroveBarometerSensorBMP180]:http://wiki.seeedstudio.com/Grove-Barometer_Sensor-BMP180/
