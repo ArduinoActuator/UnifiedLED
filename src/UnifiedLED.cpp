@@ -46,14 +46,15 @@ ledFunctionReturnValue UnifiedLED::setLevel(float level) {
     case LED_BAR:
     case LED_CIRCULAR:
       my9221->setLevel(level+1);
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_MY9221 */
 #ifdef LED_HAL_USE_P98X3
-    case P98X3_LED:
-      return FUNCTION_SUCCESS;
+    case P98X3_LED: /* todo */
+      /* return LED_FUNCTION_SUCCESS; */
+      return LED_FUNCTION_UNSUPPORTED;
 #endif /* LED_HAL_USE_P98X3 */
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 ledFunctionReturnValue UnifiedLED::setLedNum(uint32_t count) {
@@ -63,22 +64,22 @@ ledFunctionReturnValue UnifiedLED::setLedNum(uint32_t count) {
     case LED_CIRCULAR:
       _num_of_led = count;
       my9221->setLedNum(count);
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_MY9221 */
 #ifdef LED_HAL_USE_P98X3
     case P98X3_LED:
       _num_of_led = count;
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_P98X3 */
 #ifdef LED_HAL_USE_NEO_PIXEL
     case NEO_PIXEL_LED:
-      if (count > 0xFFFF) return FUNCTION_FAIL;
+      if (count > 0xFFFF) return LED_FUNCTION_FAIL;
       _num_of_led = count;
       neoPixel->updateLength((uint16_t)count);
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_NEO_PIXEL */
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 ledFunctionReturnValue UnifiedLED::setMode(UnifiedLedMode mode) {
@@ -91,16 +92,16 @@ ledFunctionReturnValue UnifiedLED::setMode(UnifiedLedMode mode) {
       } else if (mode==LED_REVERSE) {
         my9221->setGreenToRed(false);
       } else {
-        return FUNCTION_UNSUPPORTED;
+        return LED_FUNCTION_UNSUPPORTED;
       }
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_MY9221 */
 #ifdef LED_HAL_USE_P98X3
     case P98X3_LED:
-      return FUNCTION_UNSUPPORTED;
+      return LED_FUNCTION_UNSUPPORTED;
 #endif /* LED_HAL_USE_P98X3 */
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 UnifiedLedType UnifiedLED::getType(void) {
@@ -113,7 +114,7 @@ ledFunctionReturnValue UnifiedLED::setLed(uint32_t ledNo, float brightness) {
     case LED_BAR:
     case LED_CIRCULAR:
       my9221->setLed(ledNo+1, brightness);
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_MY9221 */
     case SIMPLE_MONO_LED:
       if (ledNo ==0) {
@@ -124,10 +125,10 @@ ledFunctionReturnValue UnifiedLED::setLed(uint32_t ledNo, float brightness) {
           ledValue = 255 - brightness * 255;
         }
         analogWrite(_pin1, ledValue);
-        return FUNCTION_SUCCESS;
+        return LED_FUNCTION_SUCCESS;
       }
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 ledFunctionReturnValue UnifiedLED::setLed(float brightness) {
@@ -140,9 +141,9 @@ ledFunctionReturnValue UnifiedLED::setLed(float brightness) {
         ledValue = 255 - brightness * 255;
       }
       analogWrite(_pin1, ledValue);
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 ledFunctionReturnValue UnifiedLED::setLed(uint32_t ledNo, byte red, byte green, byte blue) {
@@ -150,20 +151,20 @@ ledFunctionReturnValue UnifiedLED::setLed(uint32_t ledNo, byte red, byte green, 
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
     case LED_CIRCULAR:
-      return FUNCTION_UNSUPPORTED;
+      return LED_FUNCTION_UNSUPPORTED;
 #endif /* LED_HAL_USE_MY9221 */
 #ifdef LED_HAL_USE_P98X3
     case P98X3_LED:
-      if (ledNo > _num_of_led) return FUNCTION_FAIL;
+      if (ledNo > _num_of_led) return LED_FUNCTION_FAIL;
       p98x3->setColorRGB(ledNo, red, green, blue);
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_P98X3 */
 #ifdef LED_HAL_USE_NEO_PIXEL
     case NEO_PIXEL_LED:
-      if (ledNo > _num_of_led) return FUNCTION_FAIL;
+      if (ledNo > _num_of_led) return LED_FUNCTION_FAIL;
       neoPixel->setPixelColor((uint16_t)ledNo, (uint8_t) red, (uint8_t) green, (uint8_t) blue);
       neoPixel->show();
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_NEO_PIXEL */
     case SIMPLE_COLOR_LED:
       if (ledNo ==0) {
@@ -180,10 +181,10 @@ ledFunctionReturnValue UnifiedLED::setLed(uint32_t ledNo, byte red, byte green, 
         analogWrite(_pin1, r_level);
         analogWrite(_pin2, green);
         analogWrite(_pin3, b_level);
-        return FUNCTION_SUCCESS;
+        return LED_FUNCTION_SUCCESS;
       }
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 ledFunctionReturnValue UnifiedLED::setLed(byte red, byte green, byte blue) {
@@ -202,9 +203,9 @@ ledFunctionReturnValue UnifiedLED::setLed(byte red, byte green, byte blue) {
       analogWrite(_pin1, r_level);
       analogWrite(_pin2, green);
       analogWrite(_pin3, b_level);
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value) {
@@ -213,7 +214,7 @@ ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value) {
     case LED_BAR:
     case LED_CIRCULAR:
       my9221->setBits(value);
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_MY9221 */
     case SIMPLE_MONO_LED:
       if ((value & 0b1)>0) {
@@ -224,11 +225,11 @@ ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value) {
           ledValue = 255 - value;
         }
         analogWrite(_pin1, ledValue);
-        return FUNCTION_SUCCESS;
+        return LED_FUNCTION_SUCCESS;
       }
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value, byte red, byte green, byte blue) {
@@ -236,7 +237,7 @@ ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value, byte red, byte green,
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
     case LED_CIRCULAR:
-      return FUNCTION_UNSUPPORTED;
+      return LED_FUNCTION_UNSUPPORTED;
 #endif /* LED_HAL_USE_MY9221 */
 #ifdef LED_HAL_USE_P98X3
     case P98X3_LED:
@@ -250,7 +251,7 @@ ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value, byte red, byte green,
         }
         value = value >> 1;
       };
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_P98X3 */
 #ifdef LED_HAL_USE_NEO_PIXEL
     case NEO_PIXEL_LED:
@@ -265,9 +266,10 @@ ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value, byte red, byte green,
         neoPixel->show();
         value = value >> 1;
       };
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_NEO_PIXEL */
     case SIMPLE_COLOR_LED:
+      /*
       if ((value & 0b1)>0) {
         uint8_t r_level, g_level, b_level;
         if (_led_mode == PULL_UP) {
@@ -280,13 +282,15 @@ ledFunctionReturnValue UnifiedLED::setOnce(uint32_t value, byte red, byte green,
           b_level = 255 - blue;
         }
         analogWrite(_pin1, r_level);
-        analogWrite(_pin2, green);
+        analogWrite(_pin2, g_level);
         analogWrite(_pin3, b_level);
-        return FUNCTION_SUCCESS;
+        return LED_FUNCTION_SUCCESS;
       }
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
+      */
+      return LED_FUNCTION_UNSUPPORTED;
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }
 
 ledFunctionReturnValue UnifiedLED::begin() {
@@ -294,21 +298,21 @@ ledFunctionReturnValue UnifiedLED::begin() {
 #ifdef LED_HAL_USE_MY9221
     case LED_BAR:
       my9221->begin();
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
     case LED_CIRCULAR:
       my9221->begin();
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_MY9221 */
 #ifdef LED_HAL_USE_P98X3
     case P98X3_LED:
       p98x3->init();
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_P98X3 */
 #ifdef LED_HAL_USE_NEO_PIXEL
     case NEO_PIXEL_LED:
       neoPixel->begin();
       neoPixel->show();
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
 #endif /* LED_HAL_USE_NEO_PIXEL */
     case SIMPLE_COLOR_LED:
       pinMode(_pin1,OUTPUT);
@@ -319,13 +323,13 @@ ledFunctionReturnValue UnifiedLED::begin() {
         analogWrite(_pin2, 255);
         analogWrite(_pin3, 255);
       }
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
     case SIMPLE_MONO_LED:
       pinMode(_pin1,OUTPUT);
       if (_led_mode == PULL_DOWN) {
         analogWrite(_pin1, 255);
       }
-      return FUNCTION_SUCCESS;
+      return LED_FUNCTION_SUCCESS;
   }
-  return FUNCTION_UNSUPPORTED;
+  return LED_FUNCTION_UNSUPPORTED;
 }

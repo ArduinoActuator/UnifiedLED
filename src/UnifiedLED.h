@@ -1,4 +1,5 @@
 #ifndef __UNIFIED_LED_H__
+#define __UNIFIED_LED_H__
 #define LED_HAL_USE_P98X3 // Grove CHAINABLE LED etc.
 #define LED_HAL_USE_MY9221
 #define LED_HAL_USE_NEO_PIXEL
@@ -17,27 +18,27 @@
 #endif /* LED_HAL_USE_P98X3 */
 
 
-enum UnifiedLedType {
+typedef enum {
   LED_BAR =1,
   LED_CIRCULAR,
   P98X3_LED,
   NEO_PIXEL_LED,
   SIMPLE_COLOR_LED,
   SIMPLE_MONO_LED
-};
+} UnifiedLedType;
 
-enum UnifiedLedMode {
+typedef enum {
   LED_FORWARD = 1,
   LED_REVERSE,
   PULL_UP,
   PULL_DOWN
-};
+} UnifiedLedMode;
 
-enum ledFunctionReturnValue {
-  FUNCTION_UNSUPPORTED = 1,
-  FUNCTION_SUCCESS,
-  FUNCTION_FAIL,
-};
+typedef enum {
+  LED_FUNCTION_UNSUPPORTED = 1,
+  LED_FUNCTION_SUCCESS,
+  LED_FUNCTION_FAIL,
+} ledFunctionReturnValue;
 
 class UnifiedLED {
 public:
