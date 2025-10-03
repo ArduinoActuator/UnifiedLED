@@ -1,7 +1,7 @@
 /*
  * NanoやMKRをClassic (UNO)のシールドを使えるようにするための変換基板を使うか否かの選択
  */
-#define USE_CONVERTER
+//#define USE_CONVERTER
 
 /*
  * LEDの種類の選択
@@ -9,6 +9,9 @@
 #define LED_TYPE PULL_UP
 //#define LED_TYPE PULL_DOWN
 
+#ifdef USE_CONVERTER
+#include "ArduinoShieldConverter.h"
+#endif /* USE_CONVERTER */
 /*
  * 注意事項 : LEDのピンは，PMWが可能なポートに接続すること
  */
@@ -16,16 +19,14 @@
 #ifdef USE_CONVERTER
 #define MONO_LED_PIN DIGITAL_5
 #else /* USE_CONVERTER */
-#define MONO_LED_PIN 5
+#define MONO_LED_PIN D5
 #endif /* USE_CONVERTER */
 
 
 #include "UnifiedLED.h"
 #include "detectArduinoHardware.h"
 
-#ifdef USE_CONVERTER
-#include "ArduinoShieldConverter.h"
-#endif /* USE_CONVERTER */
+
 
 UnifiedLED mono_led(MONO_LED_PIN, LED_TYPE);
 

@@ -1,7 +1,10 @@
 /*
  * NanoやMKRをClassic (UNO)のシールドを使えるようにするための変換基板を使うか否かの選択
  */
-#define USE_CONVERTER
+//#define USE_CONVERTER
+
+#include "UnifiedLED.h"
+#include "detectArduinoHardware.h"
 
 /*
  * 接続ピンの定義
@@ -13,14 +16,18 @@
 #define SIMPLE_COLOR_LED_GREEN_PIN DIGITAL_9
 #define SIMPLE_COLOR_LED_BLUE_PIN DIGITAL_11
 #else /* USE_CONVERTER */
-#define SIMPLE_COLOR_LED_RED_PIN 6
-#define SIMPLE_COLOR_LED_GREEN_PIN 9
-#define SIMPLE_COLOR_LED_BLUE_PIN 11
+// Mega, Uno R4, M0 pro, Giga, Nano 33 IoT, Nano ESP32
+#define SIMPLE_COLOR_LED_RED_PIN D6
+#define SIMPLE_COLOR_LED_GREEN_PIN D9
+#define SIMPLE_COLOR_LED_BLUE_PIN D11
+// MKR
+//#define SIMPLE_COLOR_LED_RED_PIN D2
+//#define SIMPLE_COLOR_LED_GREEN_PIN D3
+//#define SIMPLE_COLOR_LED_BLUE_PIN D4
 #endif /* USE_CONVERTER */
 
 
-#include "UnifiedLED.h"
-#include "detectArduinoHardware.h"
+
 
 #ifdef USE_CONVERTER
 #include "ArduinoShieldConverter.h"

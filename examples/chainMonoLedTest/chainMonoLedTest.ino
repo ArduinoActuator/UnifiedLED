@@ -1,11 +1,12 @@
 /*
  * NanoやMKRをClassic (UNO)のシールドを使えるようにするための変換基板を使うか否かの選択
  */
-#define USE_CONVERTER
+//#define USE_CONVERTER
 
 /*
  * LEDの種類の選択
  */
+
 #define GROVE_LED_CIRCULAR
 //#define GROVE_LED_BAR
 
@@ -18,8 +19,8 @@
 #define LED_BAR_PIN_A DIGITAL_13
 #define LED_BAR_PIN_B DIGITAL_10
 #else /* USE_CONVERTER */
-#define LED_BAR_PIN_A 13
-#define LED_BAR_PIN_B 10
+#define LED_BAR_PIN_A D13
+#define LED_BAR_PIN_B D10
 #endif /* USE_CONVERTER */
 #endif /* GROVE_LED_BAR */
 
@@ -32,8 +33,15 @@
 #define LED_CIRCULAR_PIN_A DIGITAL_7
 #define LED_CIRCULAR_PIN_B DIGITAL_8
 #else /* USE_CONVERTER */
-#define LED_CIRCULAR_PIN_A 7
-#define LED_CIRCULAR_PIN_B 8
+// MKR
+//#define LED_CIRCULAR_PIN_A D5
+//#define LED_CIRCULAR_PIN_B D6
+// Nano
+#define LED_CIRCULAR_PIN_A D4
+#define LED_CIRCULAR_PIN_B D5
+// other
+//#define LED_CIRCULAR_PIN_A D7
+//#define LED_CIRCULAR_PIN_B D8
 #endif /* USE_CONVERTER */
 #endif /* GROVE_LED_CIRCULAR */
 

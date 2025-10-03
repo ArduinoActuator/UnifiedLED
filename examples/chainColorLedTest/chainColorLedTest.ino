@@ -1,7 +1,14 @@
 /*
  * NanoやMKRをClassic (UNO)のシールドを使えるようにするための変換基板を使うか否かの選択
  */
-#define USE_CONVERTER
+//#define USE_CONVERTER
+
+#include "UnifiedLED.h"
+#include "detectArduinoHardware.h"
+
+#ifdef USE_CONVERTER
+#include "ArduinoShieldConverter.h"
+#endif /* USE_CONVERTER */
 
 /*
  * マイコン制御フルカラーLEDの選択
@@ -19,8 +26,12 @@
 #define P98X3_PIN_A DIGITAL_2
 #define P98X3_PIN_B DIGITAL_3
 #else /* USE_CONVERTER */
-#define P98X3_PIN_A 2
-#define P98X3_PIN_B 3
+// MKR
+//#define P98X3_PIN_A D5
+//#define P98X3_PIN_B D6
+// other
+#define P98X3_PIN_A D2
+#define P98X3_PIN_B D3
 #endif /* USE_CONVERTER */
 #endif /* USE_P98X3 */
 
@@ -33,18 +44,9 @@
 #ifdef USE_CONVERTER
 #define NEO_PIXEL_PIN DIGITAL_4
 #else /* USE_CONVERTER */
-#define NEO_PIXEL_PIN 4
+#define NEO_PIXEL_PIN D4
 #endif /* USE_CONVERTER */
 #endif /* USE_NEO_PIXEL */
-
-
-#include "UnifiedLED.h"
-#include "detectArduinoHardware.h"
-
-#ifdef USE_CONVERTER
-#include "ArduinoShieldConverter.h"
-#endif /* USE_CONVERTER */
-
 
 #ifdef USE_P98X3
 #define LED_TYPE_NUM P98X3_LED
