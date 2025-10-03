@@ -146,6 +146,39 @@ ledFunctionReturnValue UnifiedLED::setLed(float brightness) {
   return LED_FUNCTION_UNSUPPORTED;
 }
 
+ledFunctionReturnValue UnifiedLED::clear(void) {
+  switch(_type){
+    case SIMPLE_MONO_LED:
+      setLed(0);
+      return LED_FUNCTION_SUCCESS;
+#ifdef LED_HAL_USE_MY9221
+    case LED_BAR:
+    case LED_CIRCULAR:
+      setOnce(0);
+      return LED_FUNCTION_SUCCESS;
+#endif /* LED_HAL_USE_MY9221 */
+#ifdef LED_HAL_USE_P98X3
+    case P98X3_LED:
+      for (int i=0; i< _num_of_led; i++) {
+        p98x3->setColorRGB(i, 0, 0, 0);
+      }
+      return LED_FUNCTION_SUCCESS;
+#endif /* LED_HAL_USE_P98X3 */
+#ifdef LED_HAL_USE_NEO_PIXEL
+    case NEO_PIXEL_LED:
+      for (int i=0; i< _num_of_led; i++) {
+        neoPixel->setPixelColor(i, 0, 0, 0);
+      }
+      neoPixel->show();
+      return LED_FUNCTION_SUCCESS;
+#endif /* LED_HAL_USE_NEO_PIXEL */
+    case SIMPLE_COLOR_LED:
+      setLed(0,0,0);
+      return LED_FUNCTION_SUCCESS;
+  }
+  return LED_FUNCTION_UNSUPPORTED;
+}
+
 ledFunctionReturnValue UnifiedLED::setLed(uint32_t ledNo, byte red, byte green, byte blue) {
   switch(_type){
 #ifdef LED_HAL_USE_MY9221
