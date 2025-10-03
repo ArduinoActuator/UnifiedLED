@@ -90,7 +90,7 @@
 
 |機種名|[チェーン接続可能 Grove RGB LED][GroveChainableRGB_Led]|[Grove RGB LED スティック][Grove_RGB_LEDスティック]|
 |---|---|---|
-|[Arduino Nano ESP32][NanoESP32]|◯|✕|
+|[Arduino Nano ESP32][NanoESP32]|◯|◯|
 |[Arduino Mega 2560][Mega2560]|◯|◯|
 |[Arduino M0 pro][M0Pro]|◯|◯|
 |[Arduino UNO R4 Minima][UnoR4Minima]|◯|◯|
@@ -315,11 +315,11 @@ ledFunctionReturnValue setOnce(uint32_t value);
 |---|---|---|
 |[Arduino Nano ESP32][NanoESP32]|◯|◯|
 |[Arduino Mega 2560][Mega2560]|✕1|◯|
-|[Arduino M0 pro][M0Pro]|◯|◯|
+|[Arduino M0 pro][M0Pro]|◯|✕|
 |[Arduino UNO R4 Minima][UnoR4Minima]|◯|◯|
-|[Arduino Nano 33 IoT][Nano33IoT]|◯|✕|
+|[Arduino Nano 33 IoT][Nano33IoT]|◯|◯|
 |[Arduino Giga R1 Wifi][GigaR1WiFi]|◯|◯|
-|[Ardino MKR Zero][MKRZero]|◯|✕|
+|[Ardino MKR Zero][MKRZero]|✕|◯|
 |[Arduino Nano RP2040 Connect][NanoRP2040Connect]|||
 
 
