@@ -40,7 +40,8 @@
  */
 
 #ifdef USE_NEO_PIXEL
-#define NUM_LED 10
+//#define NUM_LED 10
+#define NUM_LED 1
 #ifdef USE_CONVERTER
 #define NEO_PIXEL_PIN DIGITAL_4
 #else /* USE_CONVERTER */

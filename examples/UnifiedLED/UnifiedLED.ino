@@ -2,15 +2,14 @@
 
 
 #define GROVE_NEO_PIXEL
-#define GROVE_MONO_LED
-#define USE_SIMPLE_COLOR_LED
-#define GROVE_LED_CIRCULAR
-#define GROVE_LED_BAR
-#define GROVE_CHAINABLE_LED
+//#define GROVE_MONO_LED
+//#define USE_SIMPLE_COLOR_LED
+//#define GROVE_LED_CIRCULAR
+//#define GROVE_LED_BAR
+//#define GROVE_CHAINABLE_LED
+
 
 #include "UnifiedLED.h"
-
-
 
 //BE SURE USE CORRESPONDING DEVICE
 //Grove_LED_Bar bar(6, 7, 0, LED_CIRCULAR_24);
@@ -37,8 +36,10 @@ UnifiedLED ledChain(&(chain), P98X3_LED, NUM_CHAIN_LEDS);
 #endif /* GROVE_CHAINABLE_LED */
 
 #ifdef GROVE_NEO_PIXEL
-#define NUM_NEO_PIXEL 10
-#define NEO_PIXEL_PIN 10
+//#define NUM_NEO_PIXEL 10
+//#define NEO_PIXEL_PIN 10
+#define NUM_NEO_PIXEL 1
+#define NEO_PIXEL_PIN 4
 Adafruit_NeoPixel strip(NUM_NEO_PIXEL, NEO_PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 UnifiedLED neoPixel(&(strip), NEO_PIXEL_LED, NUM_NEO_PIXEL);
 #endif /* GROVE_NEO_PIXEL */
@@ -80,14 +81,14 @@ void setup() {
   Serial.println("led circle set mode");
 #endif /* GROVE_LED_CIRCULAR */
 #endif /* LED_HAL_USE_MY9221 */
-#ifdef LED_HAL_USE_P98X3
+#ifdef GROVE_CHAINABLE_LED
   ledChain.begin();
   Serial.println("full color led chain begin");
   for (int i=0; i< NUM_CHAIN_LEDS; i++) {
     ledChain.setLed(i,0,0,0);
   }
   Serial.println("full color led setup done");
-#endif /* LED_HAL_USE_P98X3 */
+#endif /* GROVE_CHAINABLE_LED */
 #ifdef GROVE_NEO_PIXEL
   neoPixel.begin();
   Serial.println("neoPixel begin");
@@ -154,7 +155,7 @@ void loop() {
 #endif /* GROVE_LED_CIRCULAR */
 #endif /* LED_HAL_USE_MY9221 */
 
-#ifdef LED_HAL_USE_P98X3
+#ifdef GROVE_CHAINABLE_LED
   Serial.println("Full color led chain set color");
   for (int i=0 ; i<NUM_CHAIN_LEDS ; i++ ) {
     ledChain.setLed(i,80,0,0);
@@ -177,7 +178,7 @@ void loop() {
     delay(300);
     ledChain.setLed(i,0,0,0);
   }
-#endif /* LED_HAL_USE_P98X3 */
+#endif /* GROVE_CHAINABLE_LED */
 
 #ifdef GROVE_NEO_PIXEL
   Serial.println("neoPixel set color");
