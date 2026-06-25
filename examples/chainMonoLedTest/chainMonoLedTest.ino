@@ -37,8 +37,10 @@
 //#define LED_CIRCULAR_PIN_A D5
 //#define LED_CIRCULAR_PIN_B D6
 // Nano
-#define LED_CIRCULAR_PIN_A D4
-#define LED_CIRCULAR_PIN_B D5
+//#define LED_CIRCULAR_PIN_A D4
+//#define LED_CIRCULAR_PIN_B D5
+#define LED_CIRCULAR_PIN_A D2
+#define LED_CIRCULAR_PIN_B D3
 // other
 //#define LED_CIRCULAR_PIN_A D7
 //#define LED_CIRCULAR_PIN_B D8
