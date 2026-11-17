@@ -19,8 +19,10 @@
 #define LED_BAR_PIN_A DIGITAL_13
 #define LED_BAR_PIN_B DIGITAL_10
 #else /* USE_CONVERTER */
-#define LED_BAR_PIN_A D13
-#define LED_BAR_PIN_B D10
+//#define LED_BAR_PIN_A D13
+//#define LED_BAR_PIN_B D10
+#define LED_BAR_PIN_A D3
+#define LED_BAR_PIN_B D2
 #endif /* USE_CONVERTER */
 #endif /* GROVE_LED_BAR */
 

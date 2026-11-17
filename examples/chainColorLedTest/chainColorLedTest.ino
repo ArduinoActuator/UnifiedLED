@@ -20,7 +20,7 @@
  * P98X3のピンやLED数の定義
  */
 #ifdef USE_P98X3
-#define NUM_LED  3
+#define NUM_LED  6
 
 #ifdef USE_CONVERTER
 #define P98X3_PIN_A DIGITAL_2
@@ -40,8 +40,8 @@
  */
 
 #ifdef USE_NEO_PIXEL
-//#define NUM_LED 10
-#define NUM_LED 1
+#define NUM_LED 10
+//#define NUM_LED 1
 #ifdef USE_CONVERTER
 #define NEO_PIXEL_PIN DIGITAL_4
 #else /* USE_CONVERTER */

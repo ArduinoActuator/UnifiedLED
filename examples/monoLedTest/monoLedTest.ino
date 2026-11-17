@@ -19,7 +19,8 @@
 #ifdef USE_CONVERTER
 #define MONO_LED_PIN DIGITAL_2
 #else /* USE_CONVERTER */
-#define MONO_LED_PIN D2
+//#define MONO_LED_PIN D2
+#define MONO_LED_PIN D3
 #endif /* USE_CONVERTER */
 
 
